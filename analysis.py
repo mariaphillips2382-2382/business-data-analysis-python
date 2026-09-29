@@ -4,7 +4,7 @@ import pandas as pd
 file_path = "data/customers.csv"
 df = pd.read_csv(file_path)
 
-print("BUSINESS DATA QUALITY & KPI REPORT")
+print("BUSINESS DATA QUALITY & KPI REPORTING")
 print("-----------------------------------")
 
 # Total records
