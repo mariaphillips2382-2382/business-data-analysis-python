@@ -1,0 +1,8 @@
+customer_id,name,email,city,status
+101,John,john@example.com,Toronto,Active
+102,Maria,maria@example.com,Toronto,Active
+103,,peter@example.com,Ottawa,Active
+104,Sarah,,Toronto,Inactive
+102,Maria,maria@example.com,Toronto,Active
+105,David,david@example.com,,Active
+106,Lisa,lisa@example.com,Montreal,
