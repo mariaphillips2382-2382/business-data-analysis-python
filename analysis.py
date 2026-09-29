@@ -1,44 +1,35 @@
 # Business Data Quality Analyzer
 # First Python project for GitHub
 
-customer_data = [
-{"customer_id": 101, "name": "John", "email": "john@example.com"},
-{"customer_id": 102, "name": "Maria", "email": "maria@example.com"},
-{"customer_id": 103, "name": "", "email": "peter@example.com"},
-{"customer_id": 104, "name": "Sarah", "email": ""},
-{"customer_id": 102, "name": "Maria", "email": "maria@example.com"},
-]
+import pandas as pd
+
+# Load customer data
+file_path = "data/customers.csv"
+df = pd.read_csv(file_path)
 
 print("Business Data Quality Report")
 print("----------------------------")
 
+# Display number of records
+print(f"Total records: {len(df)}")
+
 # Check for missing values
-for customer in customer_data:
-missing_fields = []
+print("\nMissing values:")
+missing_values = df.isnull().sum()
 
-for field, value in customer.items():
-if value == "":
-missing_fields.append(field)
-
-if missing_fields:
-print(
-f"Customer {customer['customer_id']} has missing data: "
-f"{', '.join(missing_fields)}"
-)
+for column, count in missing_values.items():
+if count > 0:
+print(f"- {column}: {count}")
 
 # Check for duplicate customer IDs
-customer_ids = [customer["customer_id"] for customer in customer_data]
+duplicate_ids = df[df.duplicated("customer_id", keep=False)]
 
-duplicates = {
-customer_id
-for customer_id in customer_ids
-if customer_ids.count(customer_id) > 1
-}
+print("\nDuplicate customer IDs:")
 
-if duplicates:
-print(f"Duplicate customer IDs found: {duplicates}")
+if duplicate_ids.empty:
+print("None found")
 else:
-print("No duplicate customer IDs found.")
+print(duplicate_ids["customer_id"].unique())
 
 print("----------------------------")
 print("Data quality analysis complete.")
