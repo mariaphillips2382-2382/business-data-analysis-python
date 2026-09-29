@@ -28,7 +28,7 @@ total_missing = 0
 for column, count in missing_values.items():
   if count > 0:
     print(f"- {column}: {count}")
-    total_missing += count
+    total_missing_records += count
 
 # Duplicate customer IDs
 duplicate_ids = df[df.duplicated("customer_id", keep=False)]
